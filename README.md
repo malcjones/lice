@@ -14,4 +14,4 @@ cargo install --path .
 ```
 
 ## License
-MIT; see [LICENSE](LICENSE) for details.
+MIT
