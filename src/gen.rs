@@ -1,12 +1,16 @@
 use dialoguer::Select;
 
+mod bsd_2_clause;
 mod bsd_3_clause;
 mod mit;
+mod unlicense;
 
 pub fn all() -> Vec<Box<dyn Generator>> {
     vec![
         Box::new(mit::MitLicense),
         Box::new(bsd_3_clause::Bsd3Clause),
+        Box::new(bsd_2_clause::Bsd2Clause),
+        Box::new(unlicense::Unlicense),
     ]
 }
 

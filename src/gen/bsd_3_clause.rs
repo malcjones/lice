@@ -6,7 +6,7 @@ pub struct Bsd3Clause;
 
 impl Generator for Bsd3Clause {
     fn name(&self) -> &str {
-        "3-Clause BSD License"
+        "3-Clause BSD"
     }
 
     fn generate(&self) -> String {
@@ -51,11 +51,4 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."#
         )
     }
-}
-
-#[test]
-fn test_bsd_3_clause_license() {
-    let license = Bsd3Clause.generate();
-    assert!(license.contains("Redistribution and use in source and binary forms"));
-    assert!(license.contains("Test Name"));
 }

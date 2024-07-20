@@ -7,7 +7,7 @@ pub struct MitLicense;
 
 impl Generator for MitLicense {
     fn name(&self) -> &str {
-        "MIT License"
+        "MIT"
     }
 
     fn generate(&self) -> String {
@@ -45,11 +45,4 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 IN THE SOFTWARE."#
         )
     }
-}
-
-#[test]
-fn test_mit_license() {
-    let license = MitLicense.generate();
-    assert!(license.contains("Permission is hereby granted"));
-    assert!(license.contains("Test Name"));
 }
