@@ -46,3 +46,10 @@ IN THE SOFTWARE."#
         )
     }
 }
+
+#[test]
+fn test_mit_license() {
+    let license = MitLicense.generate();
+    assert!(license.contains("Permission is hereby granted"));
+    assert!(license.contains("Test Name"));
+}

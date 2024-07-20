@@ -1,29 +1,29 @@
 use chrono::Datelike;
-    use dialoguer::Input;
+use dialoguer::Input;
+use super::Generator;
 
-    use super::Generator;
+pub struct Bsd3Clause;
 
-    pub struct Bsd3Clause;
+impl Generator for Bsd3Clause {
+    fn name(&self) -> &str {
+        "3-Clause BSD License"
+    }
 
-    impl Generator for Bsd3Clause {
-        fn name(&self) -> &str {
-            "3-Clause BSD License"
-        }
+    fn generate(&self) -> String {
+        // use test values if we're running in test
+        let name = if cfg!(test) {
+            "Test Name".to_string()
+        } else {
+            Input::new()
+                .with_prompt("What is your name?")
+                .interact()
+                .unwrap()
+        };
 
-        fn generate(&self) -> String {
-            // use test values if we're running in test
-            let name = if cfg!(test) {
-                "Test Name".to_string()
-            } else {
-                Input::new()
-                    .with_prompt("What is your name?")
-                    .interact()
-                    .unwrap()
-            };
+        let year = chrono::Utc::now().year();
 
-            let year = chrono::Utc::now().year();
-
-            format!(r#"Copyright (c) {year} {name}
+        format!(
+            r#"Copyright (c) {year} {name}
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -49,6 +49,13 @@ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
 CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."#
-            )
-        }
+        )
     }
+}
+
+#[test]
+fn test_bsd_3_clause_license() {
+    let license = Bsd3Clause.generate();
+    assert!(license.contains("Redistribution and use in source and binary forms"));
+    assert!(license.contains("Test Name"));
+}
