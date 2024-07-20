@@ -24,11 +24,7 @@ impl Generator for Bsd2Clause {
         let year = chrono::Utc::now().year();
 
         format!(
-            r#"BSD Two Clause License
-======================
-
-Copyright (c) {year}, {name}. All rights reserved.
-
+            r#"Copyright (c) {year} {name}
 Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
         
